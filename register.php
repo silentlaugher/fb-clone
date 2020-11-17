@@ -1,7 +1,7 @@
 <?php 
     $page_title = "Facebook Clone - Register Page -";
     include_once 'includes/partials/headers.php';
-    include_once 'includes/connect/db.php';
+    include_once 'includes/core/database/load.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
         $upFirst = $_POST['first-name'];
@@ -11,16 +11,14 @@
         $birthDay = $_POST['birth-day'];
         $birthMonth = $_POST['birth-month'];
         $birthYear = $_POST['birth-year'];
-        $upgen = $_POST['gen'];
+        if(!empty($_POST['gen'])){
+            $upgen = $_POST['gen'];
+        }
         $birth = ''.$birthYear.'-'.$birthMonth.'-'.$birthDay.'';
         if(empty($upFirst) or empty($upLast) or empty($upEmailMobile) or empty($upgen)){
             $error = 'All feilds are required';
         }
-        }else{
-            echo 'Error, user not found!';
-        }
-    
-
+    }
 ?>
 <div class="header"></div>
 <div class="main">
