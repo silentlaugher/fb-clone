@@ -1,6 +1,7 @@
 <?php 
     $page_title = "Facebook Clone - Register Page -";
     include_once 'includes/partials/headers.php';
+    include_once 'includes/connect/db.php';
     include_once 'includes/core/database/load.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
@@ -44,7 +45,7 @@
                     if((filter_var($email_mobile,FILTER_VALIDATE_EMAIL)) && $loadFromUser->checkEmail($email_mobile) === true){
                         $error = "Email is already in use";
                     }else{
-                        loadFromUser->create();
+                        $loadFromUser->create('users', array('first_name' =>$first_name, 'last_name'=>$last_name, 'mobile'=>$email_mobile, 'password'=>password_hash($password, PASSWORD_BCRYPT),'username'=>$username,'userLink'=>$userLink, 'birthday'=>$birthday, 'gender'=>$upgen));
                     }
                 }
             }
