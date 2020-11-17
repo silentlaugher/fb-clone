@@ -1,5 +1,10 @@
 <?php 
+    $page_title = "Facebook Clone - Register Page -";
     include_once 'includes/partials/headers.php';
+    include_once 'includes/connect/db.php';
+
+    if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
+    }
 ?>
 <div class="header"></div>
 <div class="main">
