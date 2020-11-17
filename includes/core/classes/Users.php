@@ -35,7 +35,7 @@
                 $stmt->bindValue(':'.$key, $data);
             }
             $stmt->execute();
-            return $this->pdo->lastInsertedId();
+            return $this->pdo->lastInsertId();
           }
 
         }
