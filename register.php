@@ -17,7 +17,15 @@
         $birth = ''.$birthYear.'-'.$birthMonth.'-'.$birthDay.'';
         if(empty($upFirst) or empty($upLast) or empty($upEmailMobile) or empty($upgen)){
             $error = 'All feilds are required';
+        }else{
+            $first_name = $loadFromUser->checkInput($upFirst);
+            $last_name = $loadFromUser->checkInput($upLast);
+            $email_mobile = $loadFromUser->checkInput($upEmailMobile);
+            $password = $loadFromUser->checkInput($upPassword);
+            $screenName = ''.$first_name.'_'.$last_name.'';
         }
+    }else{
+        echo 'User not found!';
     }
 ?>
 <div class="header"></div>
