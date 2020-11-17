@@ -11,7 +11,7 @@
         <h1>Create an account</h1>
         <div>It's free and always will be</div>
         <form action="register.php" method="POST" name="user-sign-up">
-            < class="sign-up-form">
+            <div class="sign-up-form">
                 <div class="sign-up-name">
                     <input type="text" name="first-name" id="first-name" class="text-field" placeholder="First Name">
                     <input type="text" name="last-name" id="last-name" class="text-field" placeholder="Last Name">
