@@ -23,6 +23,31 @@
             $email_mobile = $loadFromUser->checkInput($upEmailMobile);
             $password = $loadFromUser->checkInput($upPassword);
             $screenName = ''.$first_name.'_'.$last_name.'';
+            if (DB::query('SELECT screenName FROM users WHERE screenName = :screenName', array(':screenName' => $screenName ))) {
+                $screenRand = rand();
+                $userLink = ''.$screenName.''.$screenRand.'';
+            }else{
+                $userLink = $screenName;
+            }
+            if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email_mobile)){
+                if(!preg_match("^[0-9]{11}^", $email_mobile)){
+                    $error = 'Email id or Mobile number is not correct. Please try again.';
+                    }
+                }else{
+                  if(!filter_var($email_mobile)){
+                      $error = "Invalid Email Format";
+                }else if(strlen($first_name) > 20){
+                        $error = "Name must be between 2-20 character";
+                }else if(strlen($password) <8 && strlen($password) >= 60){
+                        $error = "The password is either too short or too long";
+                }else{
+                    if((filter_var($email_mobile,FILTER_VALIDATE_EMAIL)) && $loadFromUser->checkEmail($email_mobile) === true){
+                        $error = "Email is already in use";
+                    }else{
+                        loadFromUser->create();
+                    }
+                }
+            }
         }
     }else{
         echo 'User not found!';
