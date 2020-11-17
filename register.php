@@ -4,7 +4,23 @@
     include_once 'includes/connect/db.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
-    }
+        $upFirst = $_POST['first-name'];
+        $upLast = $_POST['last-name'];
+        $upEmailMobile = $_POST['email-mobile'];
+        $upPassword = $_POST['up-password'];
+        $birthDay = $_POST['birth-day'];
+        $birthMonth = $_POST['birth-month'];
+        $birthYear = $_POST['birth-year'];
+        $upgen = $_POST['gen'];
+        $birth = ''.$birthYear.'-'.$birthMonth.'-'.$birthDay.'';
+        if(empty($upFirst) or empty($upLast) or empty($upEmailMobile) or empty($upgen)){
+            $error = 'All feilds are required';
+        }
+        }else{
+            echo 'Error, user not found!';
+        }
+    
+
 ?>
 <div class="header"></div>
 <div class="main">
@@ -12,7 +28,9 @@
         <img src="assets/img/facebookSigninImage.png" alt="">
     </div>
     <div class="right-side">
-        <div class="error"></div>
+        <div class="error">
+            <?php if(!empty($error)){echo $error;} ?>
+        </div>
         <h1>Create an account</h1>
         <div>It's free and always will be</div>
         <form action="register.php" method="POST" name="user-sign-up">
