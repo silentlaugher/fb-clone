@@ -1,5 +1,5 @@
 <?php 
-    $page_title = "Friendbook Clone - Register Page -";
+    $page_title = "Friendbook - Register Page -";
     include_once 'includes/partials/headers.php';
     echo 'This is the home page!!!';
 ?>
