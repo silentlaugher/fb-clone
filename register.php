@@ -33,6 +33,26 @@
             if(!preg_match("^[_a-z0-9-]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$^", $email_mobile)){
                 if(!preg_match("^[0-9]{11}^", $email_mobile)){
                     $error = 'Email id or Mobile number is not correct. Please try again.';
+                    }else{
+                        $mob = strlen((string)$email_mobile);
+                        if($mob > 11 || $mob < 11){
+                            $error = 'Mobile number is not valid';
+                        }else if(strlen($password) <8 || strlen($password) >= 60){
+                            $error = 'Password is not correct';
+                        }else{
+                            if(DB::query('SELECT mobile FROM users WHERE mobile=:mobile', array(':mobile'=>$email_mobile))){
+                                $error = 'Mobile number is already in use.';
+                            }else{
+                                $user_id = $loadFromUser->create('users', array('first_name'=>$first_name,'last_name'=>$last_name, 'mobile' => $email_mobile, 'password'=>password_hash($password, PASSWORD_BCRYPT),'screenName'=>$screenName,'userLink'=>$userLink, 'birthday'=>$birth, 'gender'=>$upgen));
+
+                                $tstrong = true;
+                                $token = bin2hex(openssl_random_pseudo_bytes(64, $tstrong));
+                                $loadFromUser->create('token', array('token'=>sha1($token), 'user_id'=>$user_id));
+                                setcookie('FBID', $token, time()+60*60*24*7, '/', NULL, NULL, true);
+                                header('Location: index.php');
+        
+                            }
+                        } 
                     }
                 }else{
                   if(!filter_var($email_mobile)){
