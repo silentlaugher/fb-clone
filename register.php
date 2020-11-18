@@ -1,5 +1,5 @@
 <?php 
-    $page_title = "Facebook Clone - Register Page -";
+    $page_title = "Friendbook Clone - Register Page -";
     include_once 'includes/partials/headers.php';
     include_once 'includes/connect/db.php';
     include_once 'includes/core/database/load.php';
@@ -77,11 +77,25 @@
                 }
             }
         }
-    }else{
-        echo 'User not found!';
     }
 ?>
-<div class="header"></div>
+<div class="header">
+    <div class="logo">friendbook</div>
+    <form action="register.php" method="POST">
+        <div class="mobile-input">
+            <div class="input-text">Email or Phone</div>
+            <input type="text" name="in-email-mobile" id="email-mobile" class="input-text-field">
+        </div>
+        <div class="password-input">
+            <div>Password</div>
+            <input type="password" name="in-pass" id="in-password" class="input-text-field">
+            <div class="forgotten-acc">Forgotten account</div>
+        </div>
+        <div class="login-button">
+            <input type="submit" value="Sign in" class="sign-in login">
+        </div>
+    </form>
+</div>
 <div class="main">
     <div class="left-side">
         <img src="assets/img/facebookSigninImage.png" alt="">
