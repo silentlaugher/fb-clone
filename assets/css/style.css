@@ -27,6 +27,7 @@ body{
 .error{
     color: red;
     font-size: 18px;
+    margin-top: 33px;
 }
 
 .register-form{
