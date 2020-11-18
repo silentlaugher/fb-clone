@@ -46,6 +46,13 @@
                         $error = "Email is already in use";
                     }else{
                         $user_id = $loadFromUser->create('users', array('first_name' =>$first_name, 'last_name'=>$last_name, 'email'=>$email_mobile, 'password'=>password_hash($password, PASSWORD_BCRYPT),'screenName'=>$screenName,'userLink'=>$userLink, 'birthday'=>$birth, 'gender'=>$upgen));
+
+                        $tstrong = true;
+                        $token = bin2hex(openssl_random_pseudo_bytes(64, $tstrong));
+                        $loadFromUser->create('token', array('token'=>sha1($token), 'user_id'=>$user_id));
+                        setcookie('FBID', $token, time()+60*60*24*7, '/', NULL, NULL, true);
+                        header('Location: index.php');
+
                     }
                 }
             }
