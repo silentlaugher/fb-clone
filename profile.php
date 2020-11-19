@@ -1,6 +1,14 @@
 <?php 
     $page_title = "Friendbook - Profile Page -";
+    include_once 'includes/connect/login.php';
+    include_once 'includes/core/database/load.php';
     include_once 'includes/partials/headers.php';
+
+    if(login::isLoggedIn()){
+        $userid = login::isLoggedIn();
+    }else{
+    header('location: register.php');
+    }
 ?>
     <header>
     <div class="top-bar">
