@@ -5,6 +5,10 @@ body{
     font-size: 16px;
 }
 
+a{
+text-decoration: none;
+}
+
 .main{
     font-family: Arial, Helvetica, sans-serif;
     height: 100vh;
@@ -214,10 +218,33 @@ input.sign-in.login {
 }
 
 input#main-search {
-    height: 20px;
+    height: 21px;
     border-radius: 3px;
     box-shadow: none;
     border: 0.5px solid gray;
     width: 100%;
 }
 
+.top-right-part {
+    flex-basis: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top-pic img {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+}
+
+.top-pic-name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.border-left {
+    border-left: 0.5px solid rgba(2, 2, 2, 0.37);
+    height: 20px;
+}
