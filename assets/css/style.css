@@ -248,3 +248,27 @@ input#main-search {
     border-left: 0.5px solid rgba(2, 2, 2, 0.37);
     height: 20px;
 }
+
+.request-svg:hover .cls-1 {
+    fill: white;
+}
+
+.message-svg:hover .cls-1 {
+    fill: white;
+}
+
+.notification-svg:hover .cls-1 {
+    fill: white;
+    stroke: white;
+}
+
+.more-svg:hover .cls-1 {
+    fill: white;
+}
+
+.help-svg:hover .cls-1 {
+    fill: white;
+}
+
+
+
