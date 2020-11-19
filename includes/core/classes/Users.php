@@ -39,5 +39,12 @@
           }
 
         }
+        public function userIdByUsername($username){
+            $stmt = $this->pdo->prepare('SELECT user_id FROM users WHERE userLink = :username');
+            $stmt->bindparam(':username', $username, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_OBJ);
+            return $user->user_id;
+        }
     }
 ?>

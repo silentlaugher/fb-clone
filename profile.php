@@ -6,8 +6,15 @@
 
     if(login::isLoggedIn()){
         $userid = login::isLoggedIn();
+
     }else{
-    header('location: register.php');
+        header('location: register.php');
+    }
+
+    if(isset($_GET['username']) == true && empty($_GET['username']) == false){
+        $username = $loadFromUser->checkInput(($_GET['username']));
+        $profileId = $loadFromUser->userIdByUsername($username);
+        $profileData = $loadFromUser->userData($profileId);
     }
 ?>
     <header>
