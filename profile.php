@@ -15,6 +15,7 @@
         $username = $loadFromUser->checkInput(($_GET['username']));
         $profileId = $loadFromUser->userIdByUsername($username);
         $profileData = $loadFromUser->userData($profileId);
+        $userData = $loadFromUser->userData($profileId);
     }
 ?>
     <header>
@@ -36,10 +37,10 @@
     </div>
     <div class="top-right-part">
         <div class="top-pic-name-wrap">
-            <a href="profile.php?username=christopher_edynak" class="top-pic-name">
-            <div class="top-pic"><img src="assets/img/profile.jpg" alt=""></div>
+            <a href="profile.php?username=<?php echo $profileData->userLink; ?>" class="top-pic-name">
+            <div class="top-pic"><img src="<?php echo $profileData->profilePic; ?>" alt=""></div>
             <span class="top-name top-css border-left">
-                Christopher
+                <?php echo $profileData->firstName; ?>
             </span>
             </a>
         </div>
@@ -81,17 +82,39 @@
     <main>
         <div class="main-area">
             <div class="profile-left-wrap">
-                <div class="profile-cover-wrap"></div>
+                <div class="profile-cover-wrap" style="background-image: url(<?php echo $profileData->coverPic; ?>)">
+                    <div class="upload-cov-opt-wrap">
+                        <?php if($profileId == $userid) { ?>
+                        <div class="add-cover-photo">
+                            <img src="assets/img/profile/uploadCoverPhoto.JPG" alt="">
+                            <div class="add-cover-text">Add a cover photo</div>
+                        </div>
+                        <?php }else{ ?>
+                            <div class="dont-add-cover-photo">
+
+                            </div>
+                            <?php } ?>
+                            <div class="add-cover-opt">
+                                <div class="select-cover-photo">Select Photo</div>
+                                <div class="file-upload">
+                                    <label for="cover-upload" class="file-upload-label">Upload Photo</label>
+                                    <input type="file" name="file-upload" id="cover-upload" class="file-upload-input">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="cover-bottom-part"></div>
                 <div class="bio-timeline">
                     <div class="bio-wrap"></div>
                     <div class="status-timeline-wrap"></div>
+                    </div>
                 </div>
             </div>
             <div class="profile-right-wrap"> </div>
         </div>
         <div class="top-box-show"></div>
-        <div id="adv_dem"> </div>
+        <div id="adv_dem"></div>
     </main>
 <?php 
     include_once 'includes/partials/footers.php';
