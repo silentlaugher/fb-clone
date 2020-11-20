@@ -53,5 +53,28 @@
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
+
+        public function update($table, $user_id, $fields = array()){
+            $columns = '';
+            $i = 1;
+    
+            foreach($fields as $name => $value){
+                $columns .= "{$name} = :{$name}";
+                //coverPic = :coverPic, profilePic = :profilePic,
+                if($i < count($fields)){
+                    $columns .= ', ';
+                }
+                $i++;
+            }
+            $sql = "UPDATE {$table} SET {$columns} WHERE userId = {$user_id}";
+            //UPDATE profile SET coverPic = :coverPic, profilePic = :profilePic WHERE userId = 10;
+            if($stmt = $this->pdo->prepare($sql)){
+                foreach($fields as $key => $value){
+                    $stmt->bindValue(':'.$key, $value);
+                }
+            }
+                    $stmt->execute();
+            
+                }
     }
 ?>

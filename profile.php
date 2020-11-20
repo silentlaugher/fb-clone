@@ -84,38 +84,58 @@
             <div class="profile-left-wrap">
                 <div class="profile-cover-wrap" style="background-image: url(<?php echo $profileData->coverPic; ?>)">
                     <div class="upload-cov-opt-wrap">
-                        <?php if($profileId == $userid) { ?>
-                        <div class="add-cover-photo">
-                            <img src="assets/img/profile/uploadCoverPhoto.JPG" alt="">
-                            <div class="add-cover-text">Add a cover photo</div>
+                    <?php if($profileId == $userid) { ?>
+                    <div class="add-cover-photo">
+                        <img src="assets/img/profile/uploadCoverPhoto.JPG" alt="">
+                        <div class="add-cover-text">Add a cover photo</div>
+                    </div>
+                    <?php  }else{ ?>
+                    <div class="dont-add-cover-photo">
+                    </div>
+                    <?php  } ?>
+                    <div class="add-cov-opt">
+                        <div class="select-cover-photo">Select Photo</div>
+                        <div class="file-upload">
+                            <label for="cover-upload" class="file-upload-label">Upload Photo</label>
+                            <input type="file" name="file-upload" id="cover-upload" class="file-upload-input">
                         </div>
-                        <?php }else{ ?>
-                            <div class="dont-add-cover-photo">
-
-                            </div>
-                            <?php } ?>
-                            <div class="add-cover-opt">
-                                <div class="select-cover-photo">Select Photo</div>
-                                <div class="file-upload">
-                                    <label for="cover-upload" class="file-upload-label">Upload Photo</label>
-                                    <input type="file" name="file-upload" id="cover-upload" class="file-upload-input">
-                                </div>
-                            </div>
+                    </div>
+                    </div>
+                        </div>
+                    </div>
+                    <div class="cover-bottom-part"></div>
+                    <div class="bio-timeline">
+                        <div class="bio-wrap"></div>
+                        <div class="status-timeline-wrap"></div>
                         </div>
                     </div>
                 </div>
-                <div class="cover-bottom-part"></div>
-                <div class="bio-timeline">
-                    <div class="bio-wrap"></div>
-                    <div class="status-timeline-wrap"></div>
-                    </div>
-                </div>
-            </div>
             <div class="profile-right-wrap"> </div>
         </div>
         <div class="top-box-show"></div>
         <div id="adv_dem"></div>
     </main>
+    <script src="assets/js/jquery.js"></script>
+    <script>
+        $(function(){
+            $('.add-cover-photo').on('click', function(){
+                $('.add-cov-opt').toggle();
+            })
+
+            
+
+            $(document).mouseup(function(e){
+                var container = new Array();
+                container.push($('.add-cov-opt'));
+
+                $.each(container, function(key, value){
+                    if(!$(value).is(e.target) && $(value).has(e.target).length === 0) {
+                        $(value).hide();
+                    }
+                })
+            })
+        })
+    </script>
 <?php 
     include_once 'includes/partials/footers.php';
 ?>
