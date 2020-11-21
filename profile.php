@@ -144,7 +144,20 @@
 
                     })
                 }
-            })
+                $.ajax({
+                    url: 'http://localhost/fb/core/ajax/profile.php',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(data) {
+                        $('.profile-cover-wrap').css('background-image', 'url(' + data + ')');
+                        $('.add-cov-opt').hide();
+                    }
+
+                })
+            });                
 
             $(document).mouseup(function(e) {
                 var container = new Array();
