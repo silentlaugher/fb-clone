@@ -137,7 +137,42 @@
                         </div>
                     </div>
                     <div class="bio-timeline">
-                        <div class="bio-wrap"></div>
+                        <div class="bio-wrap">
+                            <div class="bio-intro">
+                                <div class="intro-wrap">
+                                    <img src="assets/img/profile/intro.JPG" alt="">
+                                    <div>Introduction</div>
+                                </div>
+                                <div class="intro-icon-text">
+                                    <img src="assets/img/profile/addBio.JPG" alt="">
+                                    <div class="add-bio-text">Add a short bio to tell others more about yourself</div>
+                                    <div class="add-bio-click"><a href="">Add Bio</a></div>
+                                </div>
+                                <div class="bio-details">
+                                    <div class="bio-1">
+                                        <img src="assets/img/profile/livesIn.JPG" alt="">
+                                        <div class="live-text">Lives in <span class="live-text-css blue">Manhattan, NY</span></div> 
+                                    </div>
+                                    <div class="bio-2">
+                                        <img src="assets/img/profile/followedBy.JPG" alt="">
+                                        <div class="live-text">Followed by <span class="followed-text-css blue">565 people</span></div>
+                                    </div>
+                                </div>
+                                <div class="bio-feature">
+                                <img src="assets/img/profile/feature.JPG" alt="">
+                                <div class="feat-text">
+                                    Showcase what's important to you by adding people, pages, groups and more to your featured section of your public profile.
+                                </div>
+                                <div class="add-feature blue">Add to Featured</div>
+                                <div class="add-feature-link blue">
+                                    <div class="link-plus">+</div>
+                                    <div>Add Instagram, Websites, Other Links</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        </div>
+                            </div>
                         <div class="status-timeline-wrap"></div>
                         </div>
                     </div>
