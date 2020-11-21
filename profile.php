@@ -1,8 +1,8 @@
 <?php 
     $page_title = "Friendbook - Profile Page -";
-    include_once 'includes/connect/login.php';
-    include_once 'includes/core/database/load.php';
-    include_once 'includes/partials/headers.php';
+    include_once 'connect/login.php';
+    include_once 'core/load.php';
+    include_once 'partials/headers.php';
 
     if(login::isLoggedIn()){
         $userid = login::isLoggedIn();
@@ -118,24 +118,47 @@
     <script src="assets/js/jquery.js"></script>
     <script>
         $(function(){
-            $('.add-cover-photo').on('click', function(){
+            $('.add-cover-photo').on('click', function() {
                 $('.add-cov-opt').toggle();
             })
 
-            
+            $('#cover-upload').on('change', function() {
+                var name = $('#cover-upload').val().split('\\').pop();
+                var file_data = $('#cover-upload').prop('files')[0];
+                var file_size = file_data["size "];
+                var file_type = file_data['type'].split('/').pop();
 
-            $(document).mouseup(function(e){
+                var userid = <?php echo $userid; ?>;
+                var imgName = 'user/' + userid + '/coverphoto/' + name + '';
+
+                var form_data = new FormData();
+
+                form_data.append('file', file_data);
+
+                if (name != '') {
+                    $.post('http://localhost/fb/core/ajax/profile.php', {
+                        imgName: imgName,
+                        userid: userid
+                    }, function(data) {
+                        //alert(data);
+
+                    })
+                }
+            })
+
+            $(document).mouseup(function(e) {
                 var container = new Array();
                 container.push($('.add-cov-opt'));
 
-                $.each(container, function(key, value){
-                    if(!$(value).is(e.target) && $(value).has(e.target).length === 0) {
+                $.each(container, function(key, value) {
+                    if (!$(value).is(e.target) && $(value).has(e.target).length === 0) {
                         $(value).hide();
                     }
                 })
+
             })
         })
     </script>
 <?php 
-    include_once 'includes/partials/footers.php';
+    include_once 'partials/footers.php';
 ?>

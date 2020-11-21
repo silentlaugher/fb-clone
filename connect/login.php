@@ -1,6 +1,6 @@
 <?php
 
-    include_once 'includes/connect/db.php';
+    include_once 'db.php';
 
     class login{
 

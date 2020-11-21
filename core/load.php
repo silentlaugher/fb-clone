@@ -1,7 +1,7 @@
 <?php
-    include 'includes/core/database/connection.php';
-    include 'includes/core/classes/Users.php';
-    include 'includes/core/classes/Post.php';
+    include 'database/connection.php';
+    include 'classes/Users.php';
+    include 'classes/Post.php';
     global $pdo;
     $loadFromUser = new User($pdo);
     $loadFromPost = new Post($pdo);

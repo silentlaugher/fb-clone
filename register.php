@@ -1,8 +1,8 @@
 <?php 
     $page_title = "Friendbook - Register Page -";
-    include_once 'includes/partials/headers.php';
-    include_once 'includes/connect/db.php';
-    include_once 'includes/core/database/load.php';
+    include_once 'partials/headers.php';
+    include_once 'connect/db.php';
+    include_once 'core/load.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
         $upFirst = $_POST['first-name'];
@@ -219,5 +219,5 @@
         }
 </script>
 <?php 
-    include_once 'includes/partials/footers.php';
+    include_once 'partials/footers.php';
 ?>
