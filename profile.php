@@ -120,9 +120,22 @@
                             </div>
                         </div>
                     </div>
+              </div>
+            
+                    <div class="cover-bottom-part">
+                        <div class="timeline-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Timeline
+                        </div>
+                        <div class="about-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                About
+                        </div>
+                        <div class="friends-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Friends
+                        </div>
+                        <div class="photos-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Photos
                         </div>
                     </div>
-                    <div class="cover-bottom-part"></div>
                     <div class="bio-timeline">
                         <div class="bio-wrap"></div>
                         <div class="status-timeline-wrap"></div>
@@ -159,7 +172,7 @@
                     }, function(data) {
                         //$('#adv_dem').html(/data);
                     })
-                    
+
                     $.ajax({
                         url: 'http://localhost/fb/core/ajax/profilePhoto.php',
                         cache: false,
