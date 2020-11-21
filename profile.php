@@ -170,10 +170,28 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
                         </div>
+                        <div class="status-timeline-wrap">
+                            <?php if($profileId == $userid){ ?>
+                            <div class="profile-status-write">
+                                <div class="status-wrap">
+                                    <div class="status-top-wrap">
+                                    <div class="status-top">
+                                        Create Post
+                                    </div>
+                                </div>
                             </div>
-                        <div class="status-timeline-wrap"></div>
+                                <div class="status-med">
+                                    <div class="status-prof">
+                                        <div class="top-pic"><img src="<?php echo $userData->profilePic; ?>" alt=""></div>
+                                    </div>
+                                    <div class="status-prof-textarea">
+                                        <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
