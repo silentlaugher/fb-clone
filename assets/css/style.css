@@ -441,5 +441,39 @@ img.profile-pic-me {
     text-shadow: 0 0 1px black;
 }
 
+.top-box {
+    background-color: rgba(255, 255, 255, 0.93);
+    position: fixed;
+    width: 75%;
+    height: 75%;
+    top: 12.5%;
+    left: 12.5%;
+    display: block;
+    box-shadow: 0 0 5px black;
+    border-radius: 3px;
+    z-index: 999;
+}
+
+.align-vertical-middle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.profile-pic-upload-action {
+    margin-top: 30px;
+}
+
+.upload-plus-text {
+    font-size: 20px;
+    padding: 20px 40px;
+    border: 1px solid gray;
+}
+
+.upload-plus-sign {
+    font-size: 30px;
+    margin-right: 10px;
+}
 
 /*..................end profile photo.....................*/
