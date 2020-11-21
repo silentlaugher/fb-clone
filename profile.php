@@ -1,8 +1,8 @@
 <?php 
     $page_title = "Friendbook - Profile Page -";
-    include_once 'includes/connect/login.php';
-    include_once 'includes/core/database/load.php';
-    include_once 'includes/partials/headers.php';
+    include_once 'connect/login.php';
+    include_once 'core/load.php';
+    include_once 'partials/headers.php';
 
     if(login::isLoggedIn()){
         $userid = login::isLoggedIn();
@@ -15,6 +15,7 @@
         $username = $loadFromUser->checkInput(($_GET['username']));
         $profileId = $loadFromUser->userIdByUsername($username);
         $profileData = $loadFromUser->userData($profileId);
+        $userData = $loadFromUser->userData($profileId);
     }
 ?>
     <header>
@@ -36,10 +37,10 @@
     </div>
     <div class="top-right-part">
         <div class="top-pic-name-wrap">
-            <a href="profile.php?username=christopher_edynak" class="top-pic-name">
-            <div class="top-pic"><img src="assets/img/profile.jpg" alt=""></div>
+            <a href="profile.php?username=<?php echo $userData->userLink; ?>" class="top-pic-name">
+            <div class="top-pic"><img src="<?php echo $userData->profilePic; ?>" alt=""></div>
             <span class="top-name top-css border-left">
-                Christopher
+                <?php echo $userData->firstName; ?>
             </span>
             </a>
         </div>
@@ -81,18 +82,169 @@
     <main>
         <div class="main-area">
             <div class="profile-left-wrap">
-                <div class="profile-cover-wrap"></div>
-                <div class="cover-bottom-part"></div>
-                <div class="bio-timeline">
-                    <div class="bio-wrap"></div>
-                    <div class="status-timeline-wrap"></div>
+                <div class="profile-cover-wrap" style="background-image: url(<?php echo $profileData->coverPic; ?>)">
+                    <div class="upload-cov-opt-wrap">
+                    <?php if($profileId == $userid) { ?>
+                    <div class="add-cover-photo">
+                        <img src="assets/img/profile/uploadCoverPhoto.JPG" alt="">
+                        <div class="add-cover-text">Add a cover photo</div>
+                    </div>
+                    <?php  }else{ ?>
+                    <div class="dont-add-cover-photo">
+                    </div>
+                    <?php  } ?>
+                    <div class="add-cov-opt">
+                        <div class="select-cover-photo">Select Photo</div>
+                        <div class="file-upload">
+                            <label for="cover-upload" class="file-upload-label">Upload Photo</label>
+                            <input type="file" name="file-upload" id="cover-upload" class="file-upload-input">
+                        </div>
+                    </div>
+                    </div>
+                    <div class="cover-photo-rest-wrap">
+                        <div class="profile-pic-name">
+                            <div class="profile-pic">
+                                <?php if($profileId == $userid){ ?>
+                                    <div class="profile-pic-upload">
+                                        <div class="add-pro">
+                                            <img src="assets/img/profile/uploadCoverPhoto.JPG" alt="">
+                                            <div>Update</div>
+                                        </div>
+                                    </div>
+                                    <?php
+                                } ?>
+                                <img src="<?php echo $profileData->profilePic; ?>" alt="" class="profile-pic-me">
+                            </div>
+                            <div class="profile-name">
+                            <?php echo ''.$profileData->first_name.' '.$profileData->last_name.'' ?>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+            
+                    <div class="cover-bottom-part">
+                        <div class="timeline-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Timeline
+                        </div>
+                        <div class="about-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                About
+                        </div>
+                        <div class="friends-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Friends
+                        </div>
+                        <div class="photos-button align-middle cover-but-css" data-userid="<?php echo $userid; ?>" data-profileid="<?php echo $profileId; ?>">
+                                Photos
+                        </div>
+                    </div>
+                    <div class="bio-timeline">
+                        <div class="bio-wrap"></div>
+                        <div class="status-timeline-wrap"></div>
+                        </div>
+                    </div>
                 </div>
-            </div>
             <div class="profile-right-wrap"> </div>
         </div>
         <div class="top-box-show"></div>
-        <div id="adv_dem"> </div>
+        <div id="adv_dem"></div>
     </main>
+    <script src="assets/js/jquery.js"></script>
+    <script>
+        $(function(){
+            $('.profile-pic-upload').on('click', function() {
+                $('.top-box-show').html('<div class="top-box align-vertical-middle profile-dialoge-show"> <div class="profile-pic-upload-action"> <div class="pro-pic-up"> <div class="file-upload"> <label for="profile-upload" class="file-upload-label"> <snap class="upload-plus-text align-middle"><snap class="upload-plus-sign">+</snap>Upload Photo</snap> </label> <input type="file" name="file-upload" id="profile-upload" class="file-upload-input"> </div> </div> <div class="pro-pic-choose"> </div> </div> </div>')
+            })
+
+            $(document).on('change', '#profile-upload', function() {
+
+                var name = $('#profile-upload').val().split('\\').pop();
+                var file_data = $('#profile-upload').prop('files')[0];
+                var file_size = file_data['size'];
+                var file_type = file_data['type'].split('/').pop();
+                var userid = <?php echo $userid; ?>;
+                var imgName = 'user/' + userid + '/profilePhoto/' + name + '';
+                var form_data = new FormData();
+                form_data.append('file', file_data);
+
+                if (name != '') {
+                    $.post('http://localhost/fb/core/ajax/profilePhoto.php', {
+                        imgName: imgName,
+                        userid: userid
+                    }, function(data) {
+                        //$('#adv_dem').html(/data);
+                    })
+
+                    $.ajax({
+                        url: 'http://localhost/fb/core/ajax/profilePhoto.php',
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: form_data,
+                        type: 'post',
+                        success: function(data) {
+                            $('.profile-pic-me').attr('src', " " + data + " ");
+                            $('.profile-dialoge-show').hide();
+                        }
+                    })
+
+                }
+
+            })
+
+            $('.add-cover-photo').on('click', function() {
+                $('.add-cov-opt').toggle();
+            })
+
+            $('#cover-upload').on('change', function() {
+                var name = $('#cover-upload').val().split('\\').pop();
+                var file_data = $('#cover-upload').prop('files')[0];
+                var file_size = file_data["size "];
+                var file_type = file_data['type'].split('/').pop();
+
+                var userid = <?php echo $userid; ?>;
+                var imgName = 'user/' + userid + '/coverphoto/' + name + '';
+
+                var form_data = new FormData();
+
+                form_data.append('file', file_data);
+
+                if (name != '') {
+                    $.post('http://localhost/fb/core/ajax/profile.php', {
+                        imgName: imgName,
+                        userid: userid
+                    }, function(data) {
+                        //alert(data);
+
+                    })
+                }
+                $.ajax({
+                    url: 'http://localhost/fb/core/ajax/profile.php',
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    data: form_data,
+                    type: 'post',
+                    success: function(data) {
+                        $('.profile-cover-wrap').css('background-image', 'url(' + data + ')');
+                        $('.add-cov-opt').hide();
+                    }
+
+                })
+            });                
+
+            $(document).mouseup(function(e) {
+                var container = new Array();
+                container.push($('.add-cov-opt'));
+                container.push($('.profile-dialoge-show'));
+
+                $.each(container, function(key, value) {
+                    if (!$(value).is(e.target) && $(value).has(e.target).length === 0) {
+                        $(value).hide();
+                    }
+                })
+
+            })
+        })
+    </script>
 <?php 
-    include_once 'includes/partials/footers.php';
+    include_once 'partials/footers.php';
 ?>

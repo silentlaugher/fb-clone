@@ -1,8 +1,8 @@
 <?php 
     $page_title = "Friendbook - Register Page -";
-    include_once 'includes/partials/headers.php';
-    include_once 'includes/connect/db.php';
-    include_once 'includes/core/database/load.php';
+    include_once 'partials/headers.php';
+    include_once 'connect/db.php';
+    include_once 'core/load.php';
 
     if(isset($_POST['first-name']) && !empty($_POST['first-name'])){
         $upFirst = $_POST['first-name'];
@@ -45,7 +45,7 @@
                             }else{
                                 $user_id = $loadFromUser->create('users', array('first_name'=>$first_name,'last_name'=>$last_name, 'mobile' => $email_mobile, 'password'=>password_hash($password, PASSWORD_BCRYPT),'screenName'=>$screenName,'userLink'=>$userLink, 'birthday'=>$birth, 'gender'=>$upgen));
 
-                                $loadFromUser->create('profile', array('userId'=>$user_id, 'birthday'=> $birth, 'firstName' => $first_name, 'lastName'=>$last_name, 'profilePic'=>'assets/image/defaultProfile.png','coverPic'=>'assets/image/defaultCover.png', 'gender'=>$upgen));
+                                $loadFromUser->create('profile', array('userId'=>$user_id, 'birthday'=> $birth, 'firstName' => $first_name, 'lastName'=>$last_name, 'profilePic'=>'assets/img/default.png','coverPic'=>'assets/img/defaultCover.png', 'gender'=>$upgen));
 
                                 $tstrong = true;
                                 $token = bin2hex(openssl_random_pseudo_bytes(64, $tstrong));
@@ -69,7 +69,7 @@
                     }else{
                         $user_id = $loadFromUser->create('users', array('first_name' =>$first_name, 'last_name'=>$last_name, 'email'=>$email_mobile, 'password'=>password_hash($password, PASSWORD_BCRYPT),'screenName'=>$screenName,'userLink'=>$userLink, 'birthday'=>$birth, 'gender'=>$upgen));
                         
-                        $loadFromUser->create('profile', array('userId'=>$user_id, 'birthday'=>$birth, 'firstName' => $first_name, 'lastName'=>$last_name, 'profilePic'=>'assets/image/defaultProfile.png','coverPic'=>'assets/image/defaultCover.png', 'gender'=>$upgen));
+                        $loadFromUser->create('profile', array('userId'=>$user_id, 'birthday'=>$birth, 'firstName' => $first_name, 'lastName'=>$last_name, 'profilePic'=>'assets/img/default.png','coverPic'=>'assets/img/defaultCover.png', 'gender'=>$upgen));
 
                         $tstrong = true;
                         $token = bin2hex(openssl_random_pseudo_bytes(64, $tstrong));
@@ -219,5 +219,5 @@
         }
 </script>
 <?php 
-    include_once 'includes/partials/footers.php';
+    include_once 'partials/footers.php';
 ?>
