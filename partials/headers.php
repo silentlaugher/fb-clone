@@ -9,5 +9,6 @@
    <!--custom page title -->
    <title><?php if(isset($page_title)) echo $page_title; ?></title>
    <link rel="stylesheet" href="assets/css/style.css">
+   <link rel="stylesheet" href="assets/dist/emojionearea.min.css">
 </head>
 <body>

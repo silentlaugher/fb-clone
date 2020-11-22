@@ -265,6 +265,7 @@
         <div id="adv_dem"></div>
     </main>
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/dist/emojionearea.min.js"></script>
     <script>
         $(function(){
             $('.profile-pic-upload').on('click', function() {
@@ -346,7 +347,22 @@
                     }
 
                 })
-            });                
+            });
+            
+            $('#statusEmoji').emojioneArea({
+                pickPosition: "right",
+                spellcheck: true
+            });
+
+            $(document).on('click', '.emojionearea-editor', function() {
+                $('.status-share-button-wrap').show('0.5');
+            })
+            $(document).on('click', '.status-bot', function() {
+                $('.status-share-button-wrap').show('0.5');
+            })
+
+            var fileCollection = new Array();
+
 
             $(document).mouseup(function(e) {
                 var container = new Array();
