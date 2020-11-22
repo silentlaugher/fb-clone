@@ -783,4 +783,17 @@ span.status-seemore {
     cursor: pointer;
 }
 
+.status-wrap {
+    border-radius: 3px;
+    box-shadow: 0 0 1px grey;
+}
+
+ul#sortable {
+    display: none;
+}
+
+.status-share-button-wrap {
+    display: none;
+}
+
 /*..................End Status part.....................*/

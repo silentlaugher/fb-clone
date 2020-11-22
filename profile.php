@@ -170,80 +170,85 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
-                        <div class="status-timeline-wrap">
-                            <?php if($profileId == $userid){ ?>
-                            <div class="profile-status-write">
-                                <div class="status-wrap">
-                                    <div class="status-top-wrap">
+                    </div>
+
+                    <div class="status-timeline-wrap">
+                        <?php if($profileId == $userid){ ?>
+                        <div class="profile-status-write">
+                            <div class="status-wrap">
+                                <div class="status-top-wrap">
                                     <div class="status-top">
                                         Create Post
                                     </div>
                                 </div>
                             </div>
-                                <div class="status-med">
-                                    <div class="status-prof">
-                                        <div class="top-pic"><img src="<?php echo $userData->profilePic; ?>" alt=""></div>
-                                    </div>
-                                    <div class="status-prof-textarea">
-                                        <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle" placeholder="Share what's on your mind right now?"></textarea>
-                                    </div>
+                            <div class="status-med">
+                                <div class="status-prof">
+                                    <div class="top-pic"><img src="<?php echo $userData->profilePic; ?>" alt=""></div>
                                 </div>
-                                <div class="status-bot">
-                                    <div class="file-upload-remIm">
-                                        <label for="multiple_files" class="file-upload-label">
-                                            <div class="status-bot-1">
-                                                <img src="assets/img/photo.JPG" alt="">
-                                                <div class="status-bot-text">Photo/Video</div>
-                                            </div>
-                                        </label>
-                                        <input type="file" name="file-upload" id="multiple_files" class="file-upload-input" data-multiple-caption="{count} files selected" multiple="">
-                                    </div>
+                                <div class="status-prof-textarea">
+                                    <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle" placeholder="Share what's on your mind at the moment?"></textarea>
+                                </div>
+                            </div>
+                            <div class="status-bot">
+                                <div class="file-upload-remIm">
+                                    <label for="multiple_files" class="file-upload-label">
                                     <div class="status-bot-1">
-                                        <img src="assets/img/tag.JPG" alt="">
-                                        <div class="status-bot-text">Tag Friends</div>
+                                        <img src="assets/img/photo.JPG" alt="">
+                                        <div class="status-bot-text">Photo/Video</div>
                                     </div>
-                                    <div class="status-bot-1">
-                                        <img src="assets/img/activities.JPG" alt="">
-                                        <div class="status-bot-text">Feelings/Activities</div>
+                                    </label>
+                                    <input type="file" name="file-upload" id="multiple_files" class="file-upload-input" data-multiple-caption="{count} files selected" multiple="">
+                                </div>
+                                <div class="status-bot-1">
+                                    <img src="assets/img/tag.JPG" alt="">
+                                    <div class="status-bot-text">Tag Friends</div>
+                                </div>
+                                <div class="status-bot-1">
+                                    <img src="assets/img/activities.JPG" alt="">
+                                    <div class="status-bot-text">Feelings/Activities</div>
                                 </div>
                                 <div class="status-bot-2">
-                                        <img src="assets/img/youtube-logo.jpg" alt="">
-                                        <div class="status-bot-text">YouTube</div>
+                                    <img src="assets/img/youtube-logo.jpg" alt="">
+                                    <div class="status-bot-text">YouTube</div>
                                 </div>
                                 <div class="status-bot-1 dott">...</div>
+
                             </div>
+
                             <ul id="sortable"></ul>
 
-                            <div class="status-share-button">
+                            <div class="status-share-button-wrap">
+                                <div class="status-share-button">
                                     <div class="newsFeed-privacy">
                                         <div class="right-sign-icon">
                                             <img src="assets/img/profile/rightSign.JPG" alt="">
-                                    </div>
-                                    <div class="newsfeed-icon align-middle">
+                                        </div>
+                                        <div class="newsfeed-icon align-middle">
                                         <img src="assets/img/profile/newsFeed.JPG" alt="">
-                                    </div>
-                                    <div class="newsfeed-text">
-                                        News Feed
-                                    </div>
+                                        </div>
+                                        <div class="newsfeed-text">
+                                            News Feed
+                                        </div>
                             
-                                <div class="status-privacy-wrap">
-                                    <div class="status-privacy">
-                                        <div class="privacy-icon align-middle">
-                                            <img src="assets/img/profile/publicIcon.JPG" alt="">
-                                    </div>
+                                        <div class="status-privacy-wrap">
+                                            <div class="status-privacy">
+                                                <div class="privacy-icon align-middle">
+                                                    <img src="assets/img/profile/publicIcon.JPG" alt="">
+                                                </div>
                                         
-                                        <div class="privacy-text">Public</div>
-                                        <div class="privacy-downarrow-icon align-middle">
-                                            <img src="assets/img/watchmore.png" alt="">
+                                                <div class="privacy-text">Public</div>
+                                                <div class="privacy-downarrow-icon align-middle">
+                                                    <img src="assets/img/watchmore.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="status-privacy-option">
+
                                         </div>
                                     </div>
-                            </div>
-                                    <div class="status-privacy-option">
-                                    </div>
-                                    </div>
                                 </div>
-                        </div>
+                            
                         <div class="seemore-sharebutton">
                             <div class="share-seemore-option">
                                 <div class="privacy-downarrow-icon align-middle">
@@ -254,6 +259,8 @@
                             <div class="status-share-button align-middle">
                                 Share
                             </div>
+                        </div>
+                        </div>
                         </div>
                             <?php } ?>
                         </div>
@@ -357,11 +364,10 @@
             $(document).on('click', '.emojionearea-editor', function() {
                 $('.status-share-button-wrap').show('0.5');
             })
+
             $(document).on('click', '.status-bot', function() {
                 $('.status-share-button-wrap').show('0.5');
             })
-
-            var fileCollection = new Array();
 
 
             $(document).mouseup(function(e) {
@@ -374,7 +380,16 @@
                         $(value).hide();
                     }
                 })
+            })
+            $(document).mouseup(function(e) {
+                var container = new Array();
+                container.push($('.profile-status-write'));
 
+                $.each(container, function(key, value) {
+                    if (!$(value).is(e.target) && $(value).has(e.target).length === 0) {
+                        $('.status-share-button-wrap').hide('0.2');
+                    }
+                })
             })
         })
     </script>
