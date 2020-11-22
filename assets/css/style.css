@@ -788,12 +788,25 @@ span.status-seemore {
     box-shadow: 0 0 1px grey;
 }
 
-ul#sortable {
+.status-share-button-wrap {
     display: none;
 }
 
-.status-share-button-wrap {
-    display: none;
+ul#sortable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    background-color: 255, 255, 255, 0.99;
+    flex-wrap: wrap;
+    position: relative;
+
+}
+
+#sortable li{
+    margin: 0 3px 0 3px;
+    padding: 0.233rem;
 }
 
 /*..................End Status part.....................*/
