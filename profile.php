@@ -186,7 +186,7 @@
                                         <div class="top-pic"><img src="<?php echo $userData->profilePic; ?>" alt=""></div>
                                     </div>
                                     <div class="status-prof-textarea">
-                                        <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle"></textarea>
+                                        <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle" placeholder="Share what's on your mind right now?"></textarea>
                                     </div>
                                 </div>
                                 <div class="status-bot">
@@ -207,10 +207,52 @@
                                         <img src="assets/img/activities.JPG" alt="">
                                         <div class="status-bot-text">Feelings/Activities</div>
                                 </div>
-                                <div class="status-bot-1">
-                                        <img src="assets/img/shareAction.JPG" alt="">
+                                <div class="status-bot-2">
+                                        <img src="assets/img/youtube-logo.jpg" alt="">
                                         <div class="status-bot-text">YouTube</div>
                                 </div>
+                                <div class="status-bot-1 dott">...</div>
+                            </div>
+                            <ul id="sortable"></ul>
+
+                            <div class="status-share-button">
+                                    <div class="newsFeed-privacy">
+                                        <div class="right-sign-icon">
+                                            <img src="assets/img/profile/rightSign.JPG" alt="">
+                                    </div>
+                                    <div class="newsfeed-icon align-middle">
+                                        <img src="assets/img/profile/newsFeed.JPG" alt="">
+                                    </div>
+                                    <div class="newsfeed-text">
+                                        News Feed
+                                    </div>
+                            
+                                <div class="status-privacy-wrap">
+                                    <div class="status-privacy">
+                                        <div class="privacy-icon align-middle">
+                                            <img src="assets/img/profile/publicIcon.JPG" alt="">
+                                    </div>
+                                        
+                                        <div class="privacy-text">Public</div>
+                                        <div class="privacy-downarrow-icon align-middle">
+                                            <img src="assets/img/watchmore.png" alt="">
+                                        </div>
+                                    </div>
+                            </div>
+                                    <div class="status-privacy-option">
+                                    </div>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="seemore-sharebutton">
+                            <div class="share-seemore-option">
+                                <div class="privacy-downarrow-icon align-middle">
+                                    <img src="assets/img/watchmore.png" alt="">
+                                    <span class="status-seemore">See More</span>
+                                </div>
+                            </div>
+                            <div class="status-share-button align-middle">
+                                Share
                             </div>
                         </div>
                             <?php } ?>
