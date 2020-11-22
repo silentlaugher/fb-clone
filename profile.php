@@ -189,6 +189,28 @@
                                         <textarea name="textStatus" id="statusEmoji" cols="5" rows="5" class="status align-middle"></textarea>
                                     </div>
                                 </div>
+                                <div class="status-bot">
+                                    <div class="file-upload-remIm">
+                                        <label for="multiple_files" class="file-upload-label">
+                                            <div class="status-bot-1">
+                                                <img src="assets/img/photo.JPG" alt="">
+                                                <div class="status-bot-text">Photo/Video</div>
+                                            </div>
+                                        </label>
+                                        <input type="file" name="file-upload" id="multiple_files" class="file-upload-input" data-multiple-caption="{count} files selected" multiple="">
+                                    </div>
+                                    <div class="status-bot-1">
+                                        <img src="assets/img/tag.JPG" alt="">
+                                        <div class="status-bot-text">Tag Friends</div>
+                                    </div>
+                                    <div class="status-bot-1">
+                                        <img src="assets/img/activities.JPG" alt="">
+                                        <div class="status-bot-text">Feelings/Activities</div>
+                                </div>
+                                <div class="status-bot-1">
+                                        <img src="assets/img/shareAction.JPG" alt="">
+                                        <div class="status-bot-text">YouTube</div>
+                                </div>
                             </div>
                         </div>
                             <?php } ?>
