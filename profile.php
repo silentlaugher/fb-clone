@@ -191,7 +191,7 @@
                                 </div>
                             </div>
                             <div class="status-bot">
-                                <div class="file-upload-remIm">
+                                <div class="file-upload-remImg">
                                     <label for="multiple_files" class="file-upload-label">
                                     <div class="status-bot-1">
                                         <img src="assets/img/photo.JPG" alt="">
@@ -230,7 +230,25 @@
                                         <div class="newsfeed-text">
                                             News Feed
                                         </div>
-                            
+                                        <div class="blank-text1">
+                                                      
+                                        </div>
+                                        <div class="blank-text2">
+                                                      
+                                        </div>
+                                        <div class="blank-text3">
+                                                      
+                                        </div>
+                                        <div class="blank-text4">
+                                                      
+                                        </div>
+                                        <div class="blank-text5">
+                                                      
+                                        </div>
+                                        <div class="blank-text6">
+                                                      
+                                        </div>
+                                  
                                         <div class="status-privacy-wrap">
                                             <div class="status-privacy">
                                                 <div class="privacy-icon align-middle">
@@ -271,12 +289,12 @@
         <div class="top-box-show"></div>
         <div id="adv_dem"></div>
     </main>
-    <script src="assets/js/jquery.js"></script>
-    <script src="assets/dist/emojionearea.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.tutorialjinni.com/emojionearea/3.4.1/emojionearea.js"></script>
     <script>
         $(function(){
             $('.profile-pic-upload').on('click', function() {
-                $('.top-box-show').html('<div class="top-box align-vertical-middle profile-dialoge-show"> <div class="profile-pic-upload-action"> <div class="pro-pic-up"> <div class="file-upload"> <label for="profile-upload" class="file-upload-label"> <snap class="upload-plus-text align-middle"><snap class="upload-plus-sign">+</snap>Upload Photo</snap> </label> <input type="file" name="file-upload" id="profile-upload" class="file-upload-input"> </div> </div> <div class="pro-pic-choose"> </div> </div> </div>')
+                $('.top-box-show').html('<div class="top-box align-vertical-middle profile-dialoge-show"> <div class="profile-pic-upload-action"> <div class="pro-pic-up"> <div class="file-upload"> <label for="profile-upload" class="file-upload-label"> <snap class="upload-plus-text align-middle"><snap class="upload-plus-sign">+</snap>Upload Photo</snap> </label> <input type="file" name="file-upload" id="profile-upload" class="file-upload-input"> </div> </div> <div class="pro-pic-choose"> </div> </div> </div>'); 
             })
 
             $(document).on('change', '#profile-upload', function() {
@@ -368,7 +386,6 @@
             $(document).on('click', '.status-bot', function() {
                 $('.status-share-button-wrap').show('0.5');
             })
-
             
             var fileCollection = new Array();
 
@@ -393,7 +410,98 @@
                 $("#sortable").append('<div class="remImg" style="position:absolute; top:0;right:0;cursor:pointer; display:flex;justify-content:center; align-items:center; background-color:white; border-radius:50%; height:1rem; width:1rem; font-size: 0.694rem;">X</div>')
             })
 
+            $(document).on('click', '.remImg', function() {
+                $('#sortable').empty();
+                $('.input-restore').empty().html('<label for="multiple_files" class="file-upload-label"><div class="status-bot-1"><img src="assets/img/photo.JPG" alt=""><div class="status-bot-text">Photo/Video</div></div></label><input type="file" name="file-upload" id="multiple_files" class="file-upload-input" data-multiple-caption="{count} files selected" multiple="">');
+            })
 
+            $(document).on('click', '.remImg', function() {
+                $('#sortable').empty();
+                $('.input-restore').empty().html('<label for="multiple_files" class="file-upload-label"><div class="status-bot-1"><img src="assets/img/photo.JPG" alt=""><div class="status-bot-text">Photo/Video</div></div></label><input type="file" name="file-upload" id="multiple_files" class="file-upload-input" data-multiple-caption="{count} files selected" multiple="">');
+            })
+
+            $('.status-share-button').on('click', function() {
+                var statusText = $('.emojionearea-editor').html();
+                var formData = new FormData()
+                var storeImage = [];
+                var error_images = [];
+                var files = $('#multiple_files')[0].files;
+
+                if (files.length != 0) {
+                    if (files.length > 10) {
+                        error_images += 'You can not select more than 10 images at once';
+                    } else {
+                        for (var i = 0; i < files.length; i++) {
+                            var name = document.getElementById('multiple_files').files[i].name;
+                            storeImage += '{\"imageName\":\"user/' + <?php echo $userid; ?> + '/postImage/' + name + '\"},';
+                            var ext = name.split('.').pop().toLowerCase();
+
+                            if (jQuery.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+                                error_images += '<p>Invalid ' + i + ' file type </p>';
+                            }
+
+                            var ofReader = new FileReader();
+                            ofReader.readAsDataURL(document.getElementById('multiple_files').files[i]);
+                            var f = document.getElementById('multiple_files').files[i];
+                            var fsize = f.size || f.fileSize;
+                            if (fsize > 2000000) {
+                                error_images += '<p>' + i + ' File size is too large</p>';
+                            } else {
+                                formData.append('file[]', document.getElementById('multiple_files').files[i]);
+                            }
+                        }
+                    }
+
+                    if (files.length < 1) {
+
+                    } else {
+                        var str = storeImage.replace(/,\s*$/, "");
+
+                        var stIm = '[' + str + ']';
+                    }
+                    if (error_images == '') {
+                        $.ajax({
+                            url: 'http://localhost/fb/core/ajax/uploadPostImage.php',
+                            method: "POST",
+                            data: formData,
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            beforeSend: function() {
+                                $('#error_multiple_files').html('<br/><label> Uploading...</label>');
+                            },
+                            success: function(data) {
+                                $('#error_multiple_files').html(data);
+                                $('#sortable').empty();
+                            }
+                        })
+                    } else {
+                        $('#multiple_files').val('');
+                        $('#error_multiple_files').html("<span> " + error_images + "</span>");
+                        return false;
+                    }
+                } else {
+                    var stIm = '';
+                }
+                if (stIm == '') {
+                    $.post('http://localhost/fb/core/ajax/postSubmit.php', {
+                        onlyStatusText: statusText
+                    }, function(data) {
+                        $('adv_dem').html(data);
+                        location.reload();
+                    })
+                } else {
+                    $.post('http://localhost/fb/core/ajax/postSubmit.php', {
+                        stIm: stIm,
+                        statusText: statusText
+
+                    }, function(data) {
+                        $('#adv_dem').html(data);
+                        location.reload();
+                    })
+                }
+            })
+                
             $(document).mouseup(function(e) {
                 var container = new Array();
                 container.push($('.add-cov-opt'));
